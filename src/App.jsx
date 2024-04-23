@@ -1,13 +1,16 @@
 import { useEffect, useRef } from "react";
+import Button from "./components/Button";
 
 function App() {
   const divRef = useRef();
   const inputRef = useRef();
+  const buttonRef = useRef();
 
   useEffect(() => {
-    console.dir(divRef.current);
+    // console.dir(divRef.current);
     divRef.current.innerHTML = `<h1>Học React không khó</h1>`;
     inputRef.current.focus();
+    buttonRef.current.style.fontSize = "1.5rem";
   }, []);
   return (
     <>
@@ -21,6 +24,7 @@ function App() {
         placeholder="Vui lòng nhập từ khóa tìm kiếm..."
         ref={inputRef}
       />
+      <Button label="Click me 1" ref={buttonRef} />
     </>
   );
 }
