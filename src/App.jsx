@@ -1,21 +1,31 @@
-import { useRef } from "react";
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 
 function App() {
-  // const [count, setCount] = useState(0);
-  const countRef = useRef(0);
-  const handleClick = () => {
-    // setCount(count + 1);
-    countRef.current++;
-    console.log(countRef.current);
-  };
+  const divRef = useRef();
+  const inputRef = useRef();
+
+  useEffect(() => {
+    console.dir(divRef.current);
+    divRef.current.innerHTML = `<h1>Học React không khó</h1>`;
+    inputRef.current.focus();
+  }, []);
   return (
     <>
-      {/* <h1>Unicode Academy: {count}</h1> */}
-      <h2>Count: {countRef.current}</h2>
-      <button onClick={handleClick}>Click me</button>
+      <div ref={divRef}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas quaerat,
+        consequatur hic vel rerum cupiditate sit dignissimos culpa corporis qui
+        iusto neque porro vero tempore possimus. Est, eos. Labore, est?
+      </div>
+      <input
+        type="text"
+        placeholder="Vui lòng nhập từ khóa tìm kiếm..."
+        ref={inputRef}
+      />
     </>
   );
 }
 
 export default App;
+
+//DOMContentLoaded
+//window.onload
