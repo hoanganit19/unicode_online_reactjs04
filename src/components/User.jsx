@@ -3,6 +3,7 @@ import "../assets/style.css";
 export default function User() {
   const [users, setUsers] = useState([]);
   const [deleteCount, setDeleteCount] = useState(0);
+  const checkAllRef = useRef(null);
   const checkboxListRef = useRef([]);
 
   const handleCheckAll = (e) => {
@@ -19,20 +20,31 @@ export default function User() {
     });
   };
 
+  const handleCheckItem = (e) => {
+    const status = e.target.checked;
+    if (status) {
+      setDeleteCount(deleteCount + 1);
+    } else {
+      setDeleteCount(deleteCount - 1);
+    }
+  };
+
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/users`)
       .then((res) => res.json())
       .then((users) => setUsers(users));
   }, []);
 
-  //   useEffect(() => {
-  //     console.log(checkboxListRef);
-  //   }, [users]);
+  useEffect(() => {
+    checkAllRef.current.checked =
+      deleteCount && deleteCount === checkboxListRef.current.length;
+  }, [deleteCount]);
 
   return (
     <div>
       <label>
-        <input type="checkbox" onChange={handleCheckAll} /> Check All
+        <input type="checkbox" onChange={handleCheckAll} ref={checkAllRef} />{" "}
+        Check All
       </label>
 
       <hr />
@@ -43,7 +55,8 @@ export default function User() {
             ref={(ref) => {
               checkboxListRef.current[index] = ref;
             }}
-          />{" "}
+            onChange={handleCheckItem}
+          />
           {name}
         </label>
       ))}
