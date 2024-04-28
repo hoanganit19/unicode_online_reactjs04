@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
-import { AppContext } from "../App";
 export default function Content() {
-  const context = useContext(AppContext);
-  console.log(context);
   return (
     <div>
-      <h2>{context}</h2>
+      <h2>Unicode Academy</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. In, voluptatem
+        totam. Nihil odio doloremque repudiandae cum eum soluta, ratione
+        officiis, mollitia placeat, laudantium ducimus magni enim earum quidem
+        repellendus quod.
+      </p>
     </div>
   );
 }

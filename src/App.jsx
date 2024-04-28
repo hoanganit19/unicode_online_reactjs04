@@ -1,12 +1,11 @@
-import { createContext } from "react";
-import Content from "./components/Content";
-import Heading from "./components/Heading";
-export const AppContext = createContext(null);
+import React from "react";
+import Provider from "./utils/Provider";
+import Todo from "./components/Todo/Todo";
+
 export default function App() {
   return (
-    <AppContext.Provider value={"Unicode Academy"}>
-      <Content />
-      <Heading />
-    </AppContext.Provider>
+    <Provider>
+      <Todo />
+    </Provider>
   );
 }
